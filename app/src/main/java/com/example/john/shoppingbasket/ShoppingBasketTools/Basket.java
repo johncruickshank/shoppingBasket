@@ -22,7 +22,7 @@ public class Basket {
         this.loyalCustomerRatio = 0.98;
     }
 
-    public boolean isLoyalCustomer() {
+    private boolean isLoyalCustomer() {
         return loyalCustomer;
     }
 
@@ -53,11 +53,13 @@ public class Basket {
         return total;
     }
 
+    // check for buy one get one free and apply discount if necessary
     public double applyBogof(double total) {
         double bogofDiscount = checkBogof();
         return total - bogofDiscount;
     }
 
+    // apply discount if minimum spend is met
     public double applyBigSpendDiscount(double total) {
         if (total > bigSpendAmount) {
             return total * discountRatio;
@@ -65,6 +67,7 @@ public class Basket {
         return total;
     }
 
+    // check if customer using basket is a loyal customer and add discount if so
     public double applyLoyaltyBonus(double total) {
         if (isLoyalCustomer()) {
             return total * loyalCustomerRatio;
@@ -72,6 +75,7 @@ public class Basket {
         return total;
     }
 
+    // get final total minus any discounts
     public double getFinalTotal() {
         double total = getTotalPrice();
         double bogofTotal = applyBogof(total);
@@ -96,6 +100,7 @@ public class Basket {
         return discount;
     }
 
+    // for a given item, return the number of them in the basket
     private int getAmountOfItem(Item item) {
         int count = 0;
         for (int i = 0; i < items.size(); i++) {
@@ -106,6 +111,7 @@ public class Basket {
         return count;
     }
 
+    // return one of every item in basket to discount duplicates when applying bogof discount
     private ArrayList<Item> getUniqueItems() {
         ArrayList<Item> uniqueItems = new ArrayList<>();
         for (Item item : items) {

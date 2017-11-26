@@ -18,15 +18,11 @@ public class Item {
         this.price = price;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public boolean isBogof() {
+    boolean isBogof() {
         return bogof;
     }
 
-    public double getPrice() {
+    double getPrice() {
         return price;
     }
 }
